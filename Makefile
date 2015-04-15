@@ -20,7 +20,10 @@ rootfs:
 	cp hello ../rootfs/
 	cp init ../rootfs/
 	find init hello | cpio -o -Hnewc |gzip -9 > ../rootfs.img
-	qemu -kernel ../linux-3.18.6/arch/x86/boot/bzImage -initrd ../rootfs.img
+
+debug_menu:
+	qemu -kernel ../linux-3.18.6/arch/x86/boot/bzImage -initrd ../rootfs.img -s -S
+
 .c.o:
 	$(CC) $(CC_FLAGS) $<
 
